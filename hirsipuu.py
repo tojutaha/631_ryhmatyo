@@ -1,3 +1,4 @@
+# tämä turha kommentti
 import random
 
 class Hirsipuu:
