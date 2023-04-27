@@ -110,7 +110,6 @@ class Hirsipuu:
 
 # debuggausta varten
 """
-"""
 max_vaaria_arvauksia = 6
 hp = Hirsipuu()
 while True:
@@ -132,3 +131,4 @@ while True:
         for avain, arvo in highscore.items():
             print(avain, arvo["pvm"], arvo["tulos"], arvo["vaarat_arvaukset"])
         break
+"""
