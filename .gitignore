@@ -3,3 +3,6 @@ ascii.txt
 hirsipuucopy.py
 temp.txt
 highscores.csv
+build/
+dist/
+main.spec

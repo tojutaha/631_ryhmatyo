@@ -1,6 +1,9 @@
 from hirsipuu import Hirsipuu
 import os
 import platform
+from datetime import datetime
+import msvcrt
+
 
 class HirsipuuSovellus:
     def __init__(self) -> None:
@@ -23,10 +26,32 @@ class HirsipuuSovellus:
             else:
                 print("_ ", end="")
 
-    # TODO: tämä toimimaan
     def tulosta_highscore(self):
+        self.tyhjenna_naytto
         highscores = self.puu.lue_highscore()
-        print(highscores)
+
+        print("\n================================")
+        for sana, tulokset in highscores.items():
+            pvm = datetime.strptime(tulokset["pvm"], "%Y.%m.%d/%H:%M:%S")
+
+            tulos = tulokset["tulos"]
+            vaarat = tulokset["vaarat_arvaukset"]
+
+            print()
+            print(f"{pvm}")
+            print('\033[1m' + sana + '\033[0m') # escape sequence lihavointiin
+            print(f"  \x1B[3m ratkaisuaika:\x1B[0m {tulos} min")
+            print(f"  \x1B[3m vääriä arvauksia:\x1B[0m {vaarat}")
+        print("\n================================")
+
+        # Odotetaan komentoa ennen kuin palataan alkuvalikkoon
+        print("paina 2 tai 'ESC' palataksesi\n")
+        while True:
+            if msvcrt.kbhit():
+                nappain = msvcrt.getch()
+                if nappain == b'2' or nappain == b'\x1b':
+                    self.tyhjenna_naytto()
+                    break
 
     def arvaus(self) -> str:
         while True:
@@ -73,14 +98,13 @@ class HirsipuuSovellus:
                 self.__voittosana = self.puu.arvattava_sana
                 self.puu.kirjoita_highscore()
                 break
-    
+
     def ohjeet(self):
         """ Tulostaa otsikon ja ohjeet """
         if self.__voittosana == "":
             self.__voittosana = "HIRSIPUU"
 
         jakaja = f"+-+-{'+-' * (len(self.__voittosana) // 2)}+"
-
         print(jakaja)
         print(f"  {self.__voittosana.upper()}")
         print(jakaja)
@@ -90,16 +114,16 @@ class HirsipuuSovellus:
         print(jakaja)
 
     def suorita(self):
-        self.tyhjenna_naytto()
-
         while True:
             self.ohjeet()
             komento = input("komento: ")
 
             if komento == "1":
+                self.tyhjenna_naytto()
                 self.pelaa()
             if komento == "2":
-                self.tulosta_highscore
+                self.tyhjenna_naytto()
+                self.tulosta_highscore()
             if komento == "3":
                 break
 
