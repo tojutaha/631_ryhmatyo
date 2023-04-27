@@ -70,6 +70,12 @@ class Hirsipuu:
     def alusta_peli(self) -> None:
         """ Lukee sanat tiedostosta listaan ja tarkistaa löytyykö sana jo aiemmin arvatuista sanoista, """
         """ jos ei, niin tallentaa satunnaisen sanan listasta arvattava_sana muuttujaan """
+
+        self.__oikein_arvatut_kirjaimet = []
+        self.__vaarin_arvatut_kirjaimet = []
+        self.__arvatut_kirjaimet = []
+        self.__vaaria_arvauksia = 0
+
         sanat = []
         with open("kaikkisanat.txt", "r", encoding="utf-8") as tiedosto:
             for rivi in tiedosto:
