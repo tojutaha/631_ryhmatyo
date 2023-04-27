@@ -1,4 +1,6 @@
 import random
+from datetime import datetime
+import os
 
 class Hirsipuu:
     def __init__(self) -> None:
@@ -7,6 +9,7 @@ class Hirsipuu:
         self.__vaarin_arvatut_kirjaimet = []
         self.__arvatut_kirjaimet = []
         self.__vaaria_arvauksia = 0
+        self.__aloitusaika = None
 
         self.alusta_peli()
         self.__jaljella_olevat_kirjaimet = list(self.__arvattava_sana)
@@ -33,14 +36,55 @@ class Hirsipuu:
     @property
     def jaljella_olevia_kirjaimia(self) -> int:
         return len(self.__jaljella_olevat_kirjaimet)
+    
+    def kirjoita_highscore(self) -> None:
+        """ Kirjoittaa highscores-tiedostoon päivämäärän, arvattavan sanan, kauan aikaa kului sanan arvaamiseen sekä väärien arvausten määrän """
+        with open("highscores.csv", "a") as tiedosto:
+            pvm = datetime.now()
+            pvm_f = pvm.strftime("%Y.%m.%d/%H:%M:%S")
+            ero = pvm - self.__aloitusaika
+            minuutit = ero.total_seconds() // 60
+            sekuntit = int(ero.total_seconds() % 60)
+            tiedosto.write(f"{pvm_f};{self.arvattava_sana};{int(minuutit):02d}:{int(sekuntit):02d};{self.__vaaria_arvauksia}\n")
+
+    def lue_highscore(self) -> dict:
+        """ Palauttaa highscore-tiedoston sisällön sanakirjana, avain = sana, arvot = pvm, tulos, väärät arvaukset """ 
+        tiedosto = "highscores.csv"
+        sanakirja = {}
+        if os.path.exists(tiedosto): # tarkistetaan varuilta, että tiedosto on olemassa
+            with open(tiedosto, "r") as tiedosto:
+                for rivi in tiedosto:
+                    rivi = rivi.strip() # poistellaan whitespace yms merkit
+                    osat = rivi.split(";") #pvm;sana;tulos;vaarat_arvaukset
+                    sanakirja[osat[1]] = {"pvm": osat[0], "tulos": osat[2], "vaarat_arvaukset": osat[3]}
+            return sanakirja
+        else:
+            self.nollaa_highscore() # jos ei ollut, niin kirjoitetaan tyhjä tiedosto
+            return None
+
+    def nollaa_highscore(self) -> None:
+        """ Ylikirjoittaa highscores-tiedoston tyhjäksi """
+        with open("highscores.csv", "w") as tiedosto:
+            pass
 
     def alusta_peli(self) -> None:
-        """ Lukee sanat tiedostosta listaan ja tallentaa satunnaisen sanan listasta arvattava_sana muuttujaan """
+        """ Lukee sanat tiedostosta listaan ja tarkistaa löytyykö sana jo aiemmin arvatuista sanoista, """
+        """ jos ei, niin tallentaa satunnaisen sanan listasta arvattava_sana muuttujaan """
         sanat = []
         with open("kaikkisanat.txt", "r", encoding="utf-8") as tiedosto:
             for rivi in tiedosto:
                 sanat.append(rivi.strip())
-        self.__arvattava_sana = random.choice(sanat)
+        aiemmin_arvatut_sana = self.lue_highscore()
+        if aiemmin_arvatut_sana == None: # jos tyhjä, niin ei tarvitse tarkistaa löytyykö sana jo sieltä
+            self.__arvattava_sana = random.choice(sanat)
+            self.__aloitusaika = datetime.now()
+        else:
+            sana = random.choice(sanat)
+            while sana in aiemmin_arvatut_sana:
+                sana = random.choice(sanat)
+
+            self.__arvattava_sana = random.choice(sanat)
+            self.__aloitusaika = datetime.now()
     
     def arvaa(self, kirjain: str) -> None:
         """ Tarkistaa jos kirjain esiintyy arvattavassa sanassa, jos ei niin kasvattaa väärien arvauksien määrää, """
@@ -66,6 +110,7 @@ class Hirsipuu:
 
 # debuggausta varten
 """
+"""
 max_vaaria_arvauksia = 6
 hp = Hirsipuu()
 while True:
@@ -82,5 +127,8 @@ while True:
         break
     if hp.jaljella_olevia_kirjaimia <= 0:
         print("Voitto tuli")
+        hp.kirjoita_highscore()
+        highscore = hp.lue_highscore()
+        for avain, arvo in highscore.items():
+            print(avain, arvo["pvm"], arvo["tulos"], arvo["vaarat_arvaukset"])
         break
-"""
