@@ -1,4 +1,4 @@
-from hirsipuucopy import Hirsipuu # muista copy
+from hirsipuu import Hirsipuu
 import os
 import platform
 
