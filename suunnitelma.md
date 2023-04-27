@@ -9,16 +9,19 @@
 - Tomi takoi sovelluslogiikalle rungon
 - Tommi tuijotti luentoja
 
+*27. huhtikuuta 2023:*
+- Tomi teki tuloksille tallennusjärjestelmän ja liiskasi bugeja
+- Tommi tuhersi käyttöliittymää
+
 <br>
 
 # TODO:
 - Käyttöliittymä
     -
-    - sellanen kuulemma pitäis tehdä
-    - ehkä joku ASCII-ukko sinne hirttymään (visuaalinen laskuri)
+    - Highscoren datetimen vois esittää nätimmin
 <br><br>
 - Siivota ja jäsennellä tämä dokumentti nätiksi
-- Onks tälle rivien vaihdoille jokin parempi keino kun spämmätä br joka paikkaan?
+- Siivota debuggaukseen tarkoitetut koodit pois
 
 
 <hr>
