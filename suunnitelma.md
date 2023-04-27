@@ -27,4 +27,5 @@ linkkejä:
 (nää ei jää tähän mutta voi kliksutella)
 
 https://www.markdownguide.org/basic-syntax/ <br>
-https://fi.wikipedia.org/wiki/Hirsipuu
+https://fi.wikipedia.org/wiki/Hirsipuu <br>
+https://github.com/hugovk/everyfinnishword
