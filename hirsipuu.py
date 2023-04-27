@@ -10,9 +10,9 @@ class Hirsipuu:
         self.__arvatut_kirjaimet = []
         self.__vaaria_arvauksia = 0
         self.__aloitusaika = None
+        self.__jaljella_olevat_kirjaimet = []
 
-        self.alusta_peli()
-        self.__jaljella_olevat_kirjaimet = list(self.__arvattava_sana)
+        self.alusta_peli() # Kun olio luodaan, alustetaan peli automaattisesti
 
     @property
     def arvattava_sana(self) -> str:
@@ -70,6 +70,12 @@ class Hirsipuu:
     def alusta_peli(self) -> None:
         """ Lukee sanat tiedostosta listaan ja tarkistaa löytyykö sana jo aiemmin arvatuista sanoista, """
         """ jos ei, niin tallentaa satunnaisen sanan listasta arvattava_sana muuttujaan """
+
+        self.__oikein_arvatut_kirjaimet = []
+        self.__vaarin_arvatut_kirjaimet = []
+        self.__arvatut_kirjaimet = []
+        self.__vaaria_arvauksia = 0
+
         sanat = []
         with open("kaikkisanat.txt", "r", encoding="utf-8") as tiedosto:
             for rivi in tiedosto:
@@ -78,6 +84,7 @@ class Hirsipuu:
         if aiemmin_arvatut_sana == None: # jos tyhjä, niin ei tarvitse tarkistaa löytyykö sana jo sieltä
             self.__arvattava_sana = random.choice(sanat)
             self.__aloitusaika = datetime.now()
+            self.__jaljella_olevat_kirjaimet = list(self.__arvattava_sana)
         else:
             sana = random.choice(sanat)
             while sana in aiemmin_arvatut_sana:
@@ -85,6 +92,7 @@ class Hirsipuu:
 
             self.__arvattava_sana = random.choice(sanat)
             self.__aloitusaika = datetime.now()
+            self.__jaljella_olevat_kirjaimet = list(self.__arvattava_sana)
     
     def arvaa(self, kirjain: str) -> None:
         """ Tarkistaa jos kirjain esiintyy arvattavassa sanassa, jos ei niin kasvattaa väärien arvauksien määrää, """
@@ -110,12 +118,15 @@ class Hirsipuu:
 
 # debuggausta varten
 """
-"""
 max_vaaria_arvauksia = 6
 hp = Hirsipuu()
 while True:
     print(hp.arvattava_sana)
     kirjain = input("kirjain: ")
+    if kirjain == "alusta":
+        hp.alusta_peli()
+        continue
+    print(hp.arvattava_sana)
     hp.arvaa(kirjain)
     print("Oikein arvatut kirjaimet: ", hp.oikein_arvatut_kirjaimet)
     print("Väärin arvatut kirjaimet: ", hp.vaarin_arvatut_kirjaimet)
@@ -132,3 +143,4 @@ while True:
         for avain, arvo in highscore.items():
             print(avain, arvo["pvm"], arvo["tulos"], arvo["vaarat_arvaukset"])
         break
+"""
