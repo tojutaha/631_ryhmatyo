@@ -65,23 +65,22 @@ class Hirsipuu:
             self.__vaaria_arvauksia += 1
 
 # debuggausta varten
-if False:
-    max_vaaria_arvauksia = 6
-    hp = Hirsipuu()
-    while True:
-        print(hp.arvattava_sana)
-        kirjain = input("kirjain: ")
-        hp.arvaa(kirjain)
-        print("Oikein arvatut kirjaimet: ", hp.oikein_arvatut_kirjaimet)
-        print("Väärin arvatut kirjaimet: ", hp.vaarin_arvatut_kirjaimet)
-        print("Vääriä arvauksia: ", hp.vaaria_arvauksia)
-        print("Jäljellä olevia kirjaimia: ", hp.jaljella_olevia_kirjaimia)
-        print("debug_print", hp.debug_print())
-        if hp.vaaria_arvauksia >= max_vaaria_arvauksia:
-            print("Game over")
-            break
-        if hp.jaljella_olevia_kirjaimia <= 0:
-            print("Voitto tuli")
-            break
-else:
-    pass
+"""
+max_vaaria_arvauksia = 6
+hp = Hirsipuu()
+while True:
+    print(hp.arvattava_sana)
+    kirjain = input("kirjain: ")
+    hp.arvaa(kirjain)
+    print("Oikein arvatut kirjaimet: ", hp.oikein_arvatut_kirjaimet)
+    print("Väärin arvatut kirjaimet: ", hp.vaarin_arvatut_kirjaimet)
+    print("Vääriä arvauksia: ", hp.vaaria_arvauksia)
+    print("Jäljellä olevia kirjaimia: ", hp.jaljella_olevia_kirjaimia)
+    print("debug_print", hp.debug_print())
+    if hp.vaaria_arvauksia >= max_vaaria_arvauksia:
+        print("Game over")
+        break
+    if hp.jaljella_olevia_kirjaimia <= 0:
+        print("Voitto tuli")
+        break
+"""
