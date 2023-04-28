@@ -48,8 +48,7 @@ class HirsipuuSovellus:
                 tulos = tulokset["tulos"]
                 vaarat = tulokset["vaarat_arvaukset"]
 
-                print()
-                print(f"{pvm}")
+                print(f"\n{pvm}")
                 print('\033[1m' + sana + '\033[0m') # escape sequence lihavointiin
                 print(f"  \x1B[3m ratkaisuaika:\x1B[0m {tulos} min") # escape sequence kursivointiin
                 print(f"  \x1B[3m vääriä arvauksia:\x1B[0m {vaarat}")
@@ -63,7 +62,6 @@ class HirsipuuSovellus:
             komento = input("komento: ")
             if komento == "2":
                 self.tyhjenna_naytto()
-                break
 
             # Tuloksien nollaus
             if komento == "x":
@@ -71,8 +69,7 @@ class HirsipuuSovellus:
                 print("\n" * 3)
                 print(f"OLETKO AIVAN VARMA ETTÄ HALUAT NOLLATA TULOKSET?")
                 print(f"\033[1m tätä ei voi peruuttaa \033[0m")
-                print(f"Y: kyllä  N: ei")
-                print()
+                print(f"Y: kyllä  N: ei\n")
 
                 while True:
                     komento = input("komento: ")
