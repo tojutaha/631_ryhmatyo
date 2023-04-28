@@ -1,0 +1,16 @@
+Yhteenveto:
+Projektia aloittaessa meillä oli aika selkeä kuva ohjelman tulevasta rakenteesta sekä työnjaosta.
+Mietimme samalla voisiko gitiä käyttää työn nopeuttamiseksi sekä helpottamaan tiedostojen vaihtoa. 
+Koska päätimme hyödyntää olio-ohjelmointia, sekä jakaa lähdekoodit omiin moduuleihinsa, 
+gitin valinta osoittautui oikeaksi ratkaisuksi. Molemmat pystyivät työskentelemään projektissa ilman, 
+että toisen työskentely olisi keskeyttänyt toisen työskentelyä, kun ohjelman "ranka" oli kasassa.
+Toinen merkittävä etu oli, että vältyttiin muokkaamasta toistemme lähdekoodia eli ei merge-konflikteja!
+
+Hyvä suunnittelu, lähdekoodin kommentointi, selkeästi nimetyt muuttujat sekä metodit tekivät moduulien yhteensovittamisesta vaivatonta. Valtaosa projektiin liittyvästä keskustelunvaihdosta oli lähinnä ohjelman
+designista, ei niinkään ohjelmoinnista.
+
+Näiden lisäksi pyrimme hyödyntämään mahdollisimman paljon kurssilla opittuja asioita, kuten esimerkiksi 
+datetime sekä random -moduuleita, havainnointimetodeja, f-stringien formatointia, tyyppivihjeitä eri
+tietorakenteita sekä monia Pythonin omien olioiden metodeja.
+
+Linkki github-repositoryyn: https://github.com/tojutaha/631_ryhmatyo
