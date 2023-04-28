@@ -73,15 +73,19 @@ class HirsipuuSovellus:
                 print(f"\033[1m tätä ei voi peruuttaa \033[0m")
                 print(f"Y: kyllä  N: ei")
                 print()
-                komento = input("komento: ")
 
-                if komento in ["Y", "y"]:
-                    self.puu.nollaa_highscore()
-                    self.tyhjenna_naytto()
-                    break
-                elif komento in ["N", "n"]:
-                    self.tyhjenna_naytto()
-                    break
+                while True:
+                    komento = input("komento: ")
+                    if komento in ["Y", "y"]:
+                        self.puu.nollaa_highscore()
+                        self.tyhjenna_naytto()
+                        break
+                    elif komento in ["N", "n"]:
+                        self.tyhjenna_naytto()
+                        break
+                    else:
+                        continue
+            break
 
     def arvaus(self) -> str:
         while True:
@@ -125,7 +129,7 @@ class HirsipuuSovellus:
 
     def havio(self):
         """ Hävitessä tulostaa suruviestin """
-        havioviestit = ["Game over!", "Sellasta.", "Turpiin tuli!", "Miten meni noin niinkun omasta mielestä?"]
+        havioviestit = ["Game over!", "Sellasta.", "Turpiin tuli!", "Miten meni noin niinku omasta mielestä?"]
 
         self.tyhjenna_naytto()
         print(hirttopiirretty[6])
@@ -138,7 +142,7 @@ class HirsipuuSovellus:
 
         self.tyhjenna_naytto()
         print(hirttopiirretty[self.puu.vaaria_arvauksia])
-        print(choice(voittoviestit))
+        print(choice(voittoviestit), "\n")
         self.__voittosana = self.puu.arvattava_sana
         self.puu.kirjoita_highscore()
 
@@ -160,7 +164,7 @@ class HirsipuuSovellus:
     def suorita(self):
         while True:
             self.ohjeet()
-            
+
             komento = input("komento: ")
             if komento == "1":
                 self.tyhjenna_naytto()
