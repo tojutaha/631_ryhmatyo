@@ -13,16 +13,10 @@
 - Tomi teki tuloksille tallennusjärjestelmän ja liiskasi bugeja
 - Tommi tuhersi käyttöliittymää
 
+*28. huhtikuuta 2023:*
+- Viimeisiä bugi-korjauksia sekä loppuraportin luonti
+
 <br>
-
-# TODO:
-- Käyttöliittymä
-    -
-    - Highscoren datetimen vois esittää nätimmin
-<br><br>
-- Siivota ja jäsennellä tämä dokumentti nätiksi
-- Siivota debuggaukseen tarkoitetut koodit pois
-
 
 <hr>
 lähteet ja resurssit:
