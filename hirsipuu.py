@@ -12,8 +12,6 @@ class Hirsipuu:
         self.__aloitusaika = None
         self.__jaljella_olevat_kirjaimet = []
 
-        self.alusta_peli() # Kun olio luodaan, alustetaan peli automaattisesti
-
     @property
     def arvattava_sana(self) -> str:
         return self.__arvattava_sana
