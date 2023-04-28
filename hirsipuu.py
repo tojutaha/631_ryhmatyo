@@ -81,9 +81,14 @@ class Hirsipuu:
             self.__aloitusaika = datetime.now()
             self.__jaljella_olevat_kirjaimet = list(self.__arvattava_sana)
         else:
+            yritykset = 0 # yritetään löytää sanaa 100k kertaa, joka on riittävästi kaikkien rivien läpikäyntiin,
+                          # mutta ei aiheuteta päättymätöntä silmukkaa jos jostain syystä kaikki sanat ovat jo arvattu
             sana = random.choice(sanat)
             while sana in aiemmin_arvatut_sana:
+                if yritykset >= 100000:
+                    raise ValueError("Olet löytänyt salaisen lopun. Taidat olla melkoinen sananikkari!")
                 sana = random.choice(sanat)
+                yritykset += 1
 
             self.__arvattava_sana = random.choice(sanat)
             self.__aloitusaika = datetime.now()
