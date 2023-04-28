@@ -25,10 +25,8 @@
 
 
 <hr>
-linkkejä:
+lähteet ja resurssit:
 <br>
-(nää ei jää tähän mutta voi kliksutella)
-
-https://www.markdownguide.org/basic-syntax/ <br>
 https://fi.wikipedia.org/wiki/Hirsipuu <br>
-https://github.com/hugovk/everyfinnishword
+https://github.com/hugovk/everyfinnishword <br>
+https://gist.github.com/chrishorton/8510732aa9a80a03c829b09f12e20d9c
