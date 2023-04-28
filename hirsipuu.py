@@ -28,9 +28,6 @@ class Hirsipuu:
     def vaarin_arvatut_kirjaimet(self) -> list:
         return self.__vaarin_arvatut_kirjaimet
     
-    def debug_print(self):
-        return self.__jaljella_olevat_kirjaimet
-    
     @property
     def jaljella_olevia_kirjaimia(self) -> int:
         return len(self.__jaljella_olevat_kirjaimet)
@@ -113,32 +110,3 @@ class Hirsipuu:
             self.__arvatut_kirjaimet.append(kirjain)
             self.__vaarin_arvatut_kirjaimet.append(kirjain)
             self.__vaaria_arvauksia += 1
-
-# debuggausta varten
-"""
-max_vaaria_arvauksia = 6
-hp = Hirsipuu()
-while True:
-    print(hp.arvattava_sana)
-    kirjain = input("kirjain: ")
-    if kirjain == "alusta":
-        hp.alusta_peli()
-        continue
-    print(hp.arvattava_sana)
-    hp.arvaa(kirjain)
-    print("Oikein arvatut kirjaimet: ", hp.oikein_arvatut_kirjaimet)
-    print("Väärin arvatut kirjaimet: ", hp.vaarin_arvatut_kirjaimet)
-    print("Vääriä arvauksia: ", hp.vaaria_arvauksia)
-    print("Jäljellä olevia kirjaimia: ", hp.jaljella_olevia_kirjaimia)
-    print("debug_print", hp.debug_print())
-    if hp.vaaria_arvauksia >= max_vaaria_arvauksia:
-        print("Game over")
-        break
-    if hp.jaljella_olevia_kirjaimia <= 0:
-        print("Voitto tuli")
-        hp.kirjoita_highscore()
-        highscore = hp.lue_highscore()
-        for avain, arvo in highscore.items():
-            print(avain, arvo["pvm"], arvo["tulos"], arvo["vaarat_arvaukset"])
-        break
-"""
